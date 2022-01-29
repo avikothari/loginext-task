@@ -52,13 +52,9 @@ export class MapComponent implements AfterViewInit {
   makeMarkers(map: any) {
     
     for (const el of this.map_data) {
-      const marker = L.marker([el.latitude, el.longitude]).on('click', this.markerClick)
+      const marker = L.marker([el.latitude, el.longitude])
       marker.addTo(map)
     }
-  }
-
-  markerClick(e:any){
-    console.log(e.latlng)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
