@@ -3,6 +3,8 @@
     <div class="home__container-search">
         <input class="home__container-search_input" placeholder="Search by pincode / location"
             [formControl]="search_text">
+        <i class="material-icons" style="position: absolute;
+        transform: translate(0px, 5px);">search</i>
     </div>
 
     <div class="home__container-layout">
@@ -50,7 +52,7 @@
                     No results
                 </div>
             </ng-container>
-            <div class="home__container-layout_table-btns"  *ngIf="row_count > 0">
+            <div class="home__container-layout_table-btns" *ngIf="row_count > 0">
                 <button class="home__container-layout_table-btns_prev" (click)="paginateData('prev')"
                     [disabled]="offset === 0" [ngClass]="{'disabled_btn' : offset === 0}">
                     < Prev </button>

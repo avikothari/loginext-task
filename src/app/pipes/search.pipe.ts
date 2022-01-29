@@ -7,7 +7,6 @@ export class SearchPipe implements PipeTransform {
 
   transform(codes: any[], searchText: any): any[] {
 
-    if (codes) {
       if (!codes && !searchText) {
         return codes
       } else if (searchText === undefined || searchText === null) {
@@ -19,9 +18,6 @@ export class SearchPipe implements PipeTransform {
         code.pincode.indexOf(searchText) !== -1
 
       );
-    }else 
-      return []
-
-  }
+    }
 
 }

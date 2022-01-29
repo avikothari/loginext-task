@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-pincode-search',
@@ -18,16 +16,13 @@ export class PincodeSearchComponent implements OnInit {
   @ViewChildren('code_row') createdItems!: any;
   row_count: any;
 
-  data_for_map = []
 
 
-
-  constructor(@Inject('LOCATIONS') public postal_codes: any,
-    private cdRef: ChangeDetectorRef
+  constructor(@Inject('LOCATIONS') public postal_codes: any[],
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
-    console.log(this.postal_codes)
 
     this.search_text = new FormControl('')
 

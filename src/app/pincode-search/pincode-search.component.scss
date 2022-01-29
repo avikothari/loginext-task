@@ -1,4 +1,4 @@
-@use '../../assets/scss/' as *;
+@use '../../assets/scss/'as *;
 
 table {
     border-collapse: collapse;
@@ -9,16 +9,20 @@ table {
     margin-top       : 70px;
     scroll-margin-top: 70px;
 
-    &-search{
-        display: flex;
+    &-search {
+        display        : flex;
         justify-content: flex-end;
-        margin:20px 0;
-    
-        &_input{
-            padding: 10px 5px;
+        margin         : 20px 0;
+
+        &_input {
+            padding      : 10px 5px;
             border-radius: 5px;
-            width: 20%;
-            border:1px solid #3d3d3d;
+            width        : 20%;
+            border       : 1px solid #3d3d3d;
+
+            @include for_size("ipad-phone") {
+                width        : 100%;
+            }
         }
     }
 
@@ -27,9 +31,19 @@ table {
         grid-template-columns: repeat(12, minmax(5px, 1fr));
         grid-gap             : 48px;
 
+        @include for_size("ipad-phone") {
+            grid-gap: 0px;
+        }
+
         &_table {
             grid-column: span 6;
-            box-shadow: 0px 0px 5px #cecece;
+            box-shadow : 0px 0px 5px #cecece;
+
+
+            @include for_size('ipad-phone') {
+                grid-column: 1/-1;
+            }
+
 
             &-btns {
                 display        : flex;
@@ -50,7 +64,7 @@ table {
                 }
 
                 &_prev {
-                    @include common_btn_module('prev') 
+                    @include common_btn_module('prev')
                 }
 
                 &_next {
@@ -62,6 +76,10 @@ table {
 
         &_map {
             grid-column: 7/-1;
+
+            @include for_size('ipad-phone') {
+                grid-column: 1/-1;
+            }
         }
     }
 
@@ -95,17 +113,17 @@ table {
         }
     }
 
-    .disabled_btn{
-        cursor: default;
+    .disabled_btn {
+        cursor          : default;
         background-color: #8f8f8f;
-        border: 1px solid #8f8f8f;
+        border          : 1px solid #8f8f8f;
     }
 
-    .no_results{
-        display: flex;
+    .no_results {
+        display        : flex;
         justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-        font-size: 16px;
+        align-items    : center;
+        margin         : 20px 0;
+        font-size      : 16px;
     }
 }

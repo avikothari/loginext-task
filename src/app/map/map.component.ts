@@ -23,19 +23,19 @@ L.Marker.prototype.options.icon = iconDefault;
 })
 export class MapComponent implements AfterViewInit {
 
-  @Input('map_data') data: any
+  @Input('map_data') map_data: any
 
   private map: any
 
   private initMap(): void {
     this.map = L.map('map', {
       center: [28.7041, 77.1025],
-      zoom: 3
+      zoom: 10
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      minZoom: 3,
+      maxZoom: 20,
+      minZoom: 5,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
@@ -50,17 +50,27 @@ export class MapComponent implements AfterViewInit {
   }
 
   makeMarkers(map: any) {
-    for (const el of this.data) {
-      const marker = L.marker([el.latitude, el.longitude])
+    
+    for (const el of this.map_data) {
+      const marker = L.marker([el.latitude, el.longitude]).on('click', this.markerClick)
       marker.addTo(map)
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.data.isFirstChange()) {
-      this.map.invalidateSize()
-      this.makeMarkers(this.map)
-    }
+  markerClick(e:any){
+    console.log(e.latlng)
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.map_data.isFirstChange()) {
+      if (this.map_data.length === 1) {
+        this.map.setView([this.map_data[0].latitude, this.map_data[0].longitude],15,{animate:'true'})
+      }else{
+        this.map.setView([28.7041, 77.1025],10,{animate:'true'})
+      }
+
+    }
+  }
 }
+
+
