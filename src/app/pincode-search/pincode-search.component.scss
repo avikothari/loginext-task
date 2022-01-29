@@ -6,19 +6,20 @@ table {
 
 .home__container {
     padding          : 20px 7.32vw 0;
-    margin-top       : 70px;
+    margin           : 70px 0;
     scroll-margin-top: 70px;
 
     &-search {
         display        : flex;
         justify-content: flex-end;
-        margin         : 20px 0;
+        margin         : 10px 0;
 
         &_input {
             padding      : 10px 5px;
             border-radius: 5px;
             width        : 20%;
             border       : 1px solid #3d3d3d;
+            font-size    : 15px;
 
             @include for_size("ipad-phone") {
                 width: 100%;
@@ -128,5 +129,6 @@ table {
         align-items    : center;
         margin         : 20px 0;
         font-size      : 16px;
+        font-weight    : 600;
     }
 }
