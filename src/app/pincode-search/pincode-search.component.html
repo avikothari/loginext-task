@@ -1,0 +1,69 @@
+<main class="home__container">
+
+    <div class="home__container-search">
+        <input class="home__container-search_input" placeholder="Search by pincode / location"
+            [formControl]="search_text">
+    </div>
+
+    <div class="home__container-layout">
+        <div class="home__container-layout_table">
+            <table class="pin__codes-table">
+                <thead>
+                    <tr class="pin__codes-table_header_row">
+                        <td>
+                            <div class="pin__codes-table_header_row_content">
+                                Pincode
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pin__codes-table_header_row_content">
+                                Location
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pin__codes-table_header_row_content">
+                                Latitude
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pin__codes-table_header_row_content">
+                                Longitude
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let code of postal_codes | search : search_text.value;let i =index">
+                        <tr #code_row class="pin__codes-table_data_row" *ngIf="i >= offset && i < offset+limit">
+                            <td class="pin__codes-table_data_row_content">{{code.pincode}}</td>
+                            <td class="pin__codes-table_data_row_content">{{code.location}}</td>
+                            <td class="pin__codes-table_data_row_content">{{code.latitude}}</td>
+                            <td class="pin__codes-table_data_row_content">{{code.longitude}}</td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+
+            </table>
+            <ng-container *ngIf="row_count === 0">
+                <div class="no_results">
+                    No results
+                </div>
+            </ng-container>
+            <div class="home__container-layout_table-btns"  *ngIf="row_count > 0">
+                <button class="home__container-layout_table-btns_prev" (click)="paginateData('prev')"
+                    [disabled]="offset === 0" [ngClass]="{'disabled_btn' : offset === 0}">
+                    < Prev </button>
+                        <button class="home__container-layout_table-btns_next" (click)="paginateData('next')"
+                            [disabled]="offset+limit >= postal_codes.length || row_count < limit"
+                            [ngClass]="{'disabled_btn' : (offset+limit >= postal_codes.length || row_count < limit)}">Next
+                            ></button>
+            </div>
+
+
+        </div>
+        <div class="home__container-layout_map">
+            <app-map [map_data]="postal_codes | search : search_text.value"></app-map>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,111 @@
+@use '../../assets/scss/' as *;
+
+table {
+    border-collapse: collapse;
+}
+
+.home__container {
+    padding          : 20px 7.32vw 0;
+    margin-top       : 70px;
+    scroll-margin-top: 70px;
+
+    &-search{
+        display: flex;
+        justify-content: flex-end;
+        margin:20px 0;
+    
+        &_input{
+            padding: 10px 5px;
+            border-radius: 5px;
+            width: 20%;
+            border:1px solid #3d3d3d;
+        }
+    }
+
+    &-layout {
+        display              : grid;
+        grid-template-columns: repeat(12, minmax(5px, 1fr));
+        grid-gap             : 48px;
+
+        &_table {
+            grid-column: span 6;
+            box-shadow: 0px 0px 5px #cecece;
+
+            &-btns {
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                padding        : 20px 0;
+
+                @mixin common_btn_module($type) {
+                    padding         : 10px 20px;
+                    border          : 2px solid color(primary-color);
+                    border-radius   : 5px;
+                    margin          : 0 5px;
+                    font-size       : 15px;
+                    background-color: color(primary-color);
+                    color           : color(light);
+                    cursor          : pointer;
+
+                }
+
+                &_prev {
+                    @include common_btn_module('prev') 
+                }
+
+                &_next {
+                    @include common_btn_module('next')
+                }
+
+            }
+        }
+
+        &_map {
+            grid-column: 7/-1;
+        }
+    }
+
+    .pin__codes-table {
+        width: 100%;
+
+        &_header_row {
+            background-color: color(secondary);
+            border-top      : 1px solid color(primary-color);
+            border-bottom   : 1px solid color(primary-color);
+
+            &_content {
+                font-size  : 13px;
+                color      : #3d3d3d;
+                font-weight: bold;
+                padding    : 10px 0;
+                text-align : center;
+            }
+        }
+
+        &_data_row {
+            background-color: color(light);
+            border-bottom   : 1px solid #cecece;
+
+            &_content {
+                color     : #3d3d3d;
+                font-size : 15px;
+                padding   : 10px 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .disabled_btn{
+        cursor: default;
+        background-color: #8f8f8f;
+        border: 1px solid #8f8f8f;
+    }
+
+    .no_results{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+        font-size: 16px;
+    }
+}
