@@ -55,11 +55,15 @@
             <div class="home__container-layout_table-btns" *ngIf="row_count > 0">
                 <button class="home__container-layout_table-btns_prev" (click)="paginateData('prev')"
                     [disabled]="offset === 0" [ngClass]="{'disabled_btn' : offset === 0}">
-                    < Prev </button>
-                        <button class="home__container-layout_table-btns_next" (click)="paginateData('next')"
-                            [disabled]="offset+limit >= postal_codes.length || row_count < limit"
-                            [ngClass]="{'disabled_btn' : (offset+limit >= postal_codes.length || row_count < limit)}">Next
-                            ></button>
+                    <i class="material-icons">chevron_left</i>
+                    <span>Prev</span>
+                </button>
+                <button class="home__container-layout_table-btns_next" (click)="paginateData('next')"
+                    [disabled]="offset+limit >= postal_codes.length || row_count < limit"
+                    [ngClass]="{'disabled_btn' : (offset+limit >= postal_codes.length || row_count < limit)}">
+                    <span>Next</span>
+                    <i class="material-icons">chevron_right</i>
+                </button>
             </div>
 
 

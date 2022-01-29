@@ -50,7 +50,6 @@ export class MapComponent implements AfterViewInit {
   }
 
   makeMarkers(map: any) {
-    
     for (const el of this.map_data) {
       const marker = L.marker([el.latitude, el.longitude])
       marker.addTo(map)
@@ -59,12 +58,10 @@ export class MapComponent implements AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes.map_data.isFirstChange()) {
-      if (this.map_data.length === 1) {
-        this.map.setView([this.map_data[0].latitude, this.map_data[0].longitude],15,{animate:'true'})
-      }else{
-        this.map.setView([28.7041, 77.1025],10,{animate:'true'})
-      }
-
+      if (this.map_data.length === 1)
+        this.map.setView([this.map_data[0].latitude, this.map_data[0].longitude], 15, { animate: 'true' })
+      else
+        this.map.setView([28.7041, 77.1025], 10, { animate: 'true' })
     }
   }
 }
